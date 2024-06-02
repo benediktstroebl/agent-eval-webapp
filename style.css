@@ -32,7 +32,8 @@ h1 {
 
 .input-group-header,
 .input-group {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -41,23 +42,21 @@ h1 {
 .input-group-header h2,
 .input-label {
     font-size: 18px;
-    flex: 1;
     text-align: center;
     font-weight: bold;
 }
 
 .input-label {
     text-align: left;
-    flex: 2;
 }
 
 input[type="number"] {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 150px;
+    width: 100%;
     text-align: right;
-    flex: 1;
+    box-sizing: border-box;
 }
 
 #plot {

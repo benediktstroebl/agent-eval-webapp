@@ -1,10 +1,10 @@
 $(document).ready(function() {
     $.getJSON("data.json", function(data) {
         function updatePlot() {
-            var gpt4PromptPrice = parseFloat($('#gpt4-prompt-price').val());
-            var gpt4CompletionPrice = parseFloat($('#gpt4-completion-price').val());
-            var gpt3PromptPrice = parseFloat($('#gpt3-prompt-price').val());
-            var gpt3CompletionPrice = parseFloat($('#gpt3-completion-price').val());
+            var gpt4PromptPrice = parseFloat($('#gpt4-prompt-price').val())/1000000;
+            var gpt4CompletionPrice = parseFloat($('#gpt4-completion-price').val())/1000000;
+            var gpt3PromptPrice = parseFloat($('#gpt3-prompt-price').val())/1000000;
+            var gpt3CompletionPrice = parseFloat($('#gpt3-completion-price').val())/1000000;
 
             var x = [];
             var y = [];

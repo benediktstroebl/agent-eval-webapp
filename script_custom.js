@@ -32,9 +32,9 @@ $(document).ready(function() {
                 } else if (item.strategy_renamed === 'LDB (GPT-4)') {
                     cost = gpt4_cost + item.mean_prompt_tokens * gpt4PromptPrice + item.mean_completion_tokens * gpt4CompletionPrice;
                 } else if (item.strategy_renamed === 'LDB (GPT-4, GPT-3.5)') {
-                    cost = gpt4_cost + item.mean_prompt_tokens * gpt3PromptPrice + item.mean_completion_tokens * gpt3CompletionPrice;
+                    cost = gpt4_cost + item.mean_prompt_tokens * gpt3PromptPrice + item.mean_completion_tokens * gpt3PromptPrice;
                 } else if (item.strategy_renamed === 'LDB (Reflexion, GPT-3.5)') {
-                    cost = reflexion_cost + item.mean_prompt_tokens * gpt3PromptPrice + item.mean_completion_tokens * gpt3CompletionPrice;
+                    cost = reflexion_cost + item.mean_prompt_tokens * gpt3PromptPrice + item.mean_completion_tokens * gpt3PromptPrice;
                 } else if (item.strategy_renamed === 'LDB (Reflexion, GPT-4)') {
                     cost = reflexion_cost + item.mean_prompt_tokens * gpt4PromptPrice + item.mean_completion_tokens * gpt4CompletionPrice;
                 } else if (item.model === 'GPT-4') {
@@ -57,8 +57,8 @@ $(document).ready(function() {
 
             var layout = {
                 title: 'Accuracy vs Cost',
-                xaxis: { title: 'Cost (USD)', rangemode: 'tozero' },
-                yaxis: { title: 'Accuracy', rangemode: 'tozero' }
+                xaxis: { title: 'Cost (USD)' },
+                yaxis: { title: 'Accuracy' }
             };
 
             Plotly.newPlot('plot', [trace], layout);

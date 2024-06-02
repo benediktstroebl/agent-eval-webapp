@@ -1,0 +1,11 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+label {
+    display: inline-block;
+    width: 200px;
+}
+#plot {
+    margin-top: 20px;
+}

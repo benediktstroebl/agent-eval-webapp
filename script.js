@@ -107,7 +107,7 @@ $(document).ready(function() {
                 }
             };
 
-            Plotly.newPlot('plot', [trace], layout);
+            Plotly.react('plot', [trace], layout);
         }
 
         $('#gpt4-prompt-price').on('input', updatePlot);

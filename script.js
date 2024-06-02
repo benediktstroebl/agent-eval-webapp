@@ -95,7 +95,7 @@ $(document).ready(function() {
 
             var layout = {
                 title: 'Accuracy vs Cost',
-                xaxis: { title: 'Cost (USD)', rangemode: 'tozero' },
+                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero' },
                 yaxis: { title: 'Accuracy', rangemode: 'tozero' },
                 showlegend: false
             };

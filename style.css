@@ -30,6 +30,7 @@ h1 {
     margin-bottom: 20px;
 }
 
+.input-group-header,
 .input-group {
     display: flex;
     align-items: center;
@@ -37,21 +38,16 @@ h1 {
     margin-bottom: 10px;
 }
 
-.input-group h2 {
+.input-group-header h2,
+.input-label {
     font-size: 18px;
-    margin: 0;
-    padding: 0 10px;
     flex: 1;
     text-align: center;
-    font-weight: normal;
+    font-weight: bold;
 }
 
-.input-group .input-label {
-    font-size: 16px;
-    padding: 10px;
-    flex: 1;
-    text-align: center;
-    border-right: 1px solid #ddd;
+.input-label {
+    text-align: left;
 }
 
 input[type="number"] {
@@ -59,8 +55,8 @@ input[type="number"] {
     border: 1px solid #ddd;
     border-radius: 4px;
     width: 150px;
-    flex: 2;
     text-align: right;
+    margin-left: 10px;
 }
 
 #plot {

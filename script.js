@@ -9,13 +9,14 @@ $(document).ready(function() {
             var x = [];
             var y = [];
             var text = [];
+            var labels = [];
+            var colors = [];
 
             var gpt4_cost = 0;
             var gpt3_cost = 0;
             var reflexion_cost = 0;
 
             data.forEach(item => {
-                var cost = 0;
                 if (item.strategy_renamed === 'GPT-4') {
                     gpt4_cost = item.mean_prompt_tokens * gpt4PromptPrice + item.mean_completion_tokens * gpt4CompletionPrice;
                 } else if (item.strategy_renamed === 'GPT-3.5') {
@@ -44,21 +45,34 @@ $(document).ready(function() {
                 } 
                 x.push(cost);
                 y.push(item.mean_accuracy);
-                text.push(item.strategy_renamed);
+                text.push(item.strategy_renamed + ' (' + item.model + ')');
+                labels.push(item.strategy_renamed + ' (' + item.model + ')');
+                colors.push(item.strategy_renamed);
             });
 
             var trace = {
                 x: x,
                 y: y,
                 text: text,
-                mode: 'markers',
-                type: 'scatter'
+                mode: 'markers+text',
+                type: 'scatter',
+                marker: {
+                    color: colors,
+                    colorscale: 'Dark2',
+                    size: 10,
+                    line: {
+                        width: 2
+                    }
+                },
+                textposition: 'top center',
+                hoverinfo: 'text'
             };
 
             var layout = {
                 title: 'Accuracy vs Cost',
                 xaxis: { title: 'Cost (USD)', rangemode: 'tozero' },
-                yaxis: { title: 'Accuracy', rangemode: 'tozero' }
+                yaxis: { title: 'Accuracy', rangemode: 'tozero' },
+                showlegend: false
             };
 
             Plotly.newPlot('plot', [trace], layout);

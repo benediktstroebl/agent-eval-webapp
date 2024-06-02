@@ -90,12 +90,13 @@ $(document).ready(function() {
                     }
                 },
                 textposition: 'bottom center',
-                hoverinfo: 'text'
+                hoverinfo: 'text',
+                hovertemplate: '<b>%{text}</b><br><br>Cost: $%{x:.2f}<br>Acc: %{y:.2%}<extra></extra>'
             };
 
             var layout = {
                 title: 'Accuracy vs Cost',
-                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero' },
+                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'log'},
                 yaxis: { title: 'Accuracy', rangemode: 'tozero' },
                 showlegend: false,
                 height: 600, // Adjust height as needed

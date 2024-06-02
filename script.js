@@ -13,39 +13,31 @@ $(document).ready(function() {
             var colors = [];
 
             var color_dict = {
-                'GPT-4': 'blue',
-                'GPT-3.5': 'blue',
-                'LDB (GPT-4)': 'orange',
-                'LDB (GPT-3.5)': 'orange',
-                'Escalation': 'green',
-                'Reflexion (GPT-4)': 'orange',
-                "LATS (GPT-4, GPT-3.5)": 'orange',
-                "Retry (GPT-4)": 'green',
-                "Warming (GPT-4-1step)": 'blue',
-                "LDB (Reflexion, GPT-4)": 'orange',
-                "LDB (GPT-4, GPT-3.5)": 'orange',
-                "LATS (GPT-4)": 'orange',
-                "LATS (GPT-3.5)": 'orange',
-                "LDB (Reflexion, GPT-3.5)": 'orange',
-                "Warming (GPT-4)": 'green',
-                'GPT-4': 'blue',
-                'GPT-3.5': 'blue',
-                'LDB (GPT-4)': 'orange',
-                'LDB (GPT-3.5)': 'orange',
-                'Escalation': 'green',
-                'Reflexion (GPT-4)': 'orange',
-                "LATS (GPT-3.5)": 'orange',
-                "Retry (GPT-4)": 'green',
-                "Warming (GPT-4-1step)": 'blue',
-                "LDB (GPT-4, Reflexion)": 'orange',
-                "LDB (GPT-3.5, GPT-4)": 'orange',
-                "LATS (GPT-4)": 'orange',
-                "LDB (GPT-3.5, Reflexion)": 'orange',
-                "Reflexion (GPT-3.5)": 'orange',
-                "Repeat (GPT-3.5)": 'green',
-                "Warming (GPT-4)": 'green'
+                'GPT-4': '#1b9e77', // blue
+                'GPT-3.5': '#1b9e77', // blue
+                'LDB (GPT-4)': '#d95f02', // orange
+                'LDB (GPT-3.5)': '#d95f02', // orange
+                'Escalation': '#7570b3', // green
+                'Reflexion (GPT-4)': '#d95f02', // orange
+                "LATS (GPT-4, GPT-3.5)": '#d95f02', // orange
+                "Retry (GPT-4)": '#7570b3', // green
+                "Warming (GPT-4-1step)": '#1b9e77', // blue
+                "LDB (Reflexion, GPT-4)": '#d95f02', // orange
+                "LDB (GPT-4, GPT-3.5)": '#d95f02', // orange
+                "LATS (GPT-4)": '#d95f02', // orange
+                "LATS (GPT-3.5)": '#d95f02', // orange
+                "LDB (Reflexion, GPT-3.5)": '#d95f02', // orange
+                "Warming (GPT-4)": '#7570b3', // green
+                "LATS (GPT-3.5)": '#d95f02', // orange
+                "Retry (GPT-4)": '#7570b3', // green
+                "Warming (GPT-4-1step)": '#1b9e77', // blue
+                "LDB (GPT-4, Reflexion)": '#d95f02', // orange
+                "LDB (GPT-3.5, GPT-4)": '#d95f02', // orange
+                "LDB (GPT-3.5, Reflexion)": '#d95f02', // orange
+                "Reflexion (GPT-3.5)": '#d95f02', // orange
+                "Repeat (GPT-3.5)": '#7570b3', // green
+                "Warming (GPT-4)": '#7570b3', // green
             };
-
             var gpt4_cost = 0;
             var gpt3_cost = 0;
             var reflexion_cost = 0;
@@ -79,8 +71,8 @@ $(document).ready(function() {
                 } 
                 x.push(cost);
                 y.push(item.mean_accuracy);
-                text.push(item.strategy_renamed + ' (' + item.model + ')');
-                labels.push(item.strategy_renamed + ' (' + item.model + ')');
+                text.push(item.strategy_renamed);
+                labels.push(item.strategy_renamed);
                 colors.push(color_dict[item.strategy_renamed] || 'black');
             });
 

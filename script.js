@@ -89,8 +89,7 @@ $(document).ready(function() {
                         width: 2
                     }
                 },
-                texttemplate: '%{text}',
-                textposition: 'auto',
+                textposition: 'bottom center',
                 hoverinfo: 'text'
             };
 

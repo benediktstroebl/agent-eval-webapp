@@ -97,7 +97,14 @@ $(document).ready(function() {
                 title: 'Accuracy vs Cost',
                 xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero' },
                 yaxis: { title: 'Accuracy', rangemode: 'tozero' },
-                showlegend: false
+                showlegend: false,
+                height: 600, // Adjust height as needed
+                margin: {
+                    l: 50,
+                    r: 50,
+                    t: 50,
+                    b: 50
+                }
             };
 
             Plotly.newPlot('plot', [trace], layout);

@@ -1,22 +1,26 @@
 $(document).ready(function() {
     $.getJSON("data.json", function(data) {
-        var models = [...new Set(data.map(item => item.model))];
-        var modelSelect = $('#model-select');
-        
-        models.forEach(model => {
-            modelSelect.append(new Option(model, model));
-        });
-
         function updatePlot() {
-            var selectedModel = modelSelect.val();
-            var promptPrice = parseFloat($('#prompt-price').val());
-            var completionPrice = parseFloat($('#completion-price').val());
+            var gpt4PromptPrice = parseFloat($('#gpt4-prompt-price').val());
+            var gpt4CompletionPrice = parseFloat($('#gpt4-completion-price').val());
+            var gpt3PromptPrice = parseFloat($('#gpt3-prompt-price').val());
+            var gpt3CompletionPrice = parseFloat($('#gpt3-completion-price').val());
 
-            var filteredData = data.filter(item => item.model === selectedModel);
+            var x = [];
+            var y = [];
+            var text = [];
 
-            var x = filteredData.map(item => item.mean_prompt_tokens * promptPrice + item.mean_completion_tokens * completionPrice);
-            var y = filteredData.map(item => item.mean_accuracy);
-            var text = filteredData.map(item => item.strategy_renamed);
+            data.forEach(item => {
+                var cost = 0;
+                if (item.model === 'GPT-4') {
+                    cost = item.mean_prompt_tokens * gpt4PromptPrice + item.mean_completion_tokens * gpt4CompletionPrice;
+                } else if (item.model === 'GPT-3.5') {
+                    cost = item.mean_prompt_tokens * gpt3PromptPrice + item.mean_completion_tokens * gpt3CompletionPrice;
+                }
+                x.push(cost);
+                y.push(item.mean_accuracy);
+                text.push(item.strategy_renamed + ' (' + item.model + ')');
+            });
 
             var trace = {
                 x: x,
@@ -35,10 +39,11 @@ $(document).ready(function() {
             Plotly.newPlot('plot', [trace], layout);
         }
 
-        modelSelect.change(updatePlot);
-        $('#prompt-price').on('input', updatePlot);
-        $('#completion-price').on('input', updatePlot);
+        $('#gpt4-prompt-price').on('input', updatePlot);
+        $('#gpt4-completion-price').on('input', updatePlot);
+        $('#gpt3-prompt-price').on('input', updatePlot);
+        $('#gpt3-completion-price').on('input', updatePlot);
 
-        modelSelect.trigger('change');
+        updatePlot();
     });
 });

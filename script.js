@@ -27,17 +27,15 @@ $(document).ready(function() {
                 "LATS (GPT-4)": '#d95f02', // orange
                 "LATS (GPT-3.5)": '#d95f02', // orange
                 "LDB (Reflexion, GPT-3.5)": '#d95f02', // orange
-                "Warming (GPT-4)": '#7570b3', // green
-                "LATS (GPT-3.5)": '#d95f02', // orange
-                "Retry (GPT-4)": '#7570b3', // green
-                "Warming (GPT-4-1step)": '#1b9e77', // blue
+                "Warming (GPT-4)": '#7570b3', // green,
                 "LDB (GPT-4, Reflexion)": '#d95f02', // orange
                 "LDB (GPT-3.5, GPT-4)": '#d95f02', // orange
                 "LDB (GPT-3.5, Reflexion)": '#d95f02', // orange
                 "Reflexion (GPT-3.5)": '#d95f02', // orange
                 "Repeat (GPT-3.5)": '#7570b3', // green
-                "Warming (GPT-4)": '#7570b3', // green
+                "Warming (GPT-4)": '#7570b3', // green,
             };
+
             var gpt4_cost = 0;
             var gpt3_cost = 0;
             var reflexion_cost = 0;
@@ -71,7 +69,7 @@ $(document).ready(function() {
                 } 
                 x.push(cost);
                 y.push(item.mean_accuracy);
-                text.push(item.strategy_renamed);
+                text.push(item.strategy_renamed + ' (' + item.model + ')');
                 labels.push(item.strategy_renamed);
                 colors.push(color_dict[item.strategy_renamed] || 'black');
             });
@@ -90,14 +88,35 @@ $(document).ready(function() {
                     }
                 },
                 textposition: 'top center',
-                hoverinfo: 'text'
+                hoverinfo: 'text',
             };
 
             var layout = {
                 title: 'Accuracy vs Cost',
                 xaxis: { title: 'Cost (USD)', rangemode: 'tozero' },
                 yaxis: { title: 'Accuracy', rangemode: 'tozero' },
-                showlegend: false
+                annotations: [
+                    {
+                        xref: 'paper',
+                        yref: 'paper',
+                        x: 1.05,
+                        xanchor: 'left',
+                        y: 1,
+                        yanchor: 'top',
+                        text: '<b>Legend</b><br>' +
+                              '<span style="color:#d95f02;">&#9679;</span> Complex agent<br>' +
+                              '<span style="color:#1b9e77;">&#9679;</span> Baseline agent<br>' +
+                              '<span style="color:#7570b3;">&#9679;</span> Zero-shot model',
+                        showarrow: false,
+                        align: 'left'
+                    }
+                ],
+                margin: {
+                    l: 50,
+                    r: 200, // Increase right margin to make space for the legend
+                    t: 50,
+                    b: 50
+                }
             };
 
             Plotly.newPlot('plot', [trace], layout);

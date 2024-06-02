@@ -106,14 +106,5 @@
         "max_accuracy": 0.9207317073,
         "mean_prompt_tokens": 416441.0,
         "mean_completion_tokens": 33500.8
-    },
-    {
-        "model": "gpt",
-        "strategy_renamed": "Escalation",
-        "mean_accuracy": 0.85,
-        "min_accuracy": 0.8414634146,
-        "max_accuracy": 0.8536585366,
-        "mean_prompt_tokens": 110309.0,
-        "mean_completion_tokens": 28172.0
     }
 ]

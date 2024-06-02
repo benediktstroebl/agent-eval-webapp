@@ -12,6 +12,40 @@ $(document).ready(function() {
             var labels = [];
             var colors = [];
 
+            var color_dict = {
+                'GPT-4': 'blue',
+                'GPT-3.5': 'blue',
+                'LDB (GPT-4)': 'orange',
+                'LDB (GPT-3.5)': 'orange',
+                'Escalation': 'green',
+                'Reflexion (GPT-4)': 'orange',
+                "LATS (GPT-4, GPT-3.5)": 'orange',
+                "Retry (GPT-4)": 'green',
+                "Warming (GPT-4-1step)": 'blue',
+                "LDB (Reflexion, GPT-4)": 'orange',
+                "LDB (GPT-4, GPT-3.5)": 'orange',
+                "LATS (GPT-4)": 'orange',
+                "LATS (GPT-3.5)": 'orange',
+                "LDB (Reflexion, GPT-3.5)": 'orange',
+                "Warming (GPT-4)": 'green',
+                'GPT-4': 'blue',
+                'GPT-3.5': 'blue',
+                'LDB (GPT-4)': 'orange',
+                'LDB (GPT-3.5)': 'orange',
+                'Escalation': 'green',
+                'Reflexion (GPT-4)': 'orange',
+                "LATS (GPT-3.5)": 'orange',
+                "Retry (GPT-4)": 'green',
+                "Warming (GPT-4-1step)": 'blue',
+                "LDB (GPT-4, Reflexion)": 'orange',
+                "LDB (GPT-3.5, GPT-4)": 'orange',
+                "LATS (GPT-4)": 'orange',
+                "LDB (GPT-3.5, Reflexion)": 'orange',
+                "Reflexion (GPT-3.5)": 'orange',
+                "Repeat (GPT-3.5)": 'green',
+                "Warming (GPT-4)": 'green'
+            };
+
             var gpt4_cost = 0;
             var gpt3_cost = 0;
             var reflexion_cost = 0;
@@ -47,7 +81,7 @@ $(document).ready(function() {
                 y.push(item.mean_accuracy);
                 text.push(item.strategy_renamed + ' (' + item.model + ')');
                 labels.push(item.strategy_renamed + ' (' + item.model + ')');
-                colors.push(item.strategy_renamed);
+                colors.push(color_dict[item.strategy_renamed] || 'black');
             });
 
             var trace = {
@@ -58,7 +92,6 @@ $(document).ready(function() {
                 type: 'scatter',
                 marker: {
                     color: colors,
-                    colorscale: 'Dark2',
                     size: 10,
                     line: {
                         width: 2

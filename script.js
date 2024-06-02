@@ -44,7 +44,7 @@ $(document).ready(function() {
                 } 
                 x.push(cost);
                 y.push(item.mean_accuracy);
-                text.push(item.strategy_renamed + ' (' + item.model + ')');
+                text.push(item.strategy_renamed);
             });
 
             var trace = {

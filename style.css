@@ -2,10 +2,25 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
 }
+
 label {
     display: inline-block;
     width: 250px;
 }
+
 #plot {
     margin-top: 20px;
+}
+
+#legend {
+    margin-top: 20px;
+}
+
+#legend h2 {
+    margin-bottom: 5px;
+}
+
+#legend p {
+    margin: 0;
+    font-size: 14px;
 }

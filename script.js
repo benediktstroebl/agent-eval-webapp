@@ -119,8 +119,8 @@ $(document).ready(function() {
             var layout = {
                 // title: 'Accuracy vs Cost',
                 uirevision: true,
-                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'log', autorange: true},
-                yaxis: { title: 'Accuracy', rangemode: 'tozero', autorange: true},
+                xaxis: { title: 'Cost (USD, measured in April 2024)', type: 'log', autorange: true},
+                yaxis: { title: 'Accuracy', autorange: true},
                 showlegend: false,
                 height: 600, // Adjust height as needed
                 margin: {

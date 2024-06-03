@@ -76,6 +76,22 @@ $(document).ready(function() {
                 colors.push(color_dict[item.strategy_renamed] || 'black');
             });
 
+            // Function to check if labels overlap and adjust text positions
+            function avoidOverlap(x, y, text) {
+                const overlapThreshold = 0.02; // Adjust this value based on your data scale
+                let textPositions = new Array(text.length).fill('top center');
+                for (let i = 0; i < text.length; i++) {
+                    for (let j = i + 1; j < text.length; j++) {
+                        if (Math.abs(x[i] - x[j]) < overlapThreshold && Math.abs(y[i] - y[j]) < overlapThreshold) {
+                            textPositions[j] = 'bottom center';
+                        }
+                    }
+                }
+                return textPositions;
+            }
+
+            var textPositions = avoidOverlap(x, y, text);
+
             var trace = {
                 x: x,
                 y: y,
@@ -89,7 +105,7 @@ $(document).ready(function() {
                         width: 2
                     }
                 },
-                textposition: 'bottom center',
+                textposition: textPositions,
                 hoverinfo: 'text',
                 hovertemplate: '<b>%{text}</b><br><br>Cost: $%{x:.2f}<br>Acc: %{y:.2%}<extra></extra>'
             };

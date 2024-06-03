@@ -82,6 +82,7 @@ $(document).ready(function() {
                 colors.push(color_dict[item.strategy_renamed] || 'black');
             });
 
+
             var trace = {
                 x: x,
                 y: y,
@@ -103,8 +104,8 @@ $(document).ready(function() {
             var layout = {
                 // title: 'Accuracy vs Cost',
                 uirevision: true,
-                xaxis: { title: 'Cost (USD, measured in April 2024)', type: 'log', autorange: true},
-                yaxis: { title: 'Accuracy', autorange: true},
+                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'log', autorange: true},
+                yaxis: { title: 'Accuracy', rangemode: 'tozero', range: [0.7, 1], autorange: true},
                 showlegend: false,
                 height: 600, // Adjust height as needed
                 margin: {

@@ -6,7 +6,15 @@
         "min_accuracy": 0.7195121951,
         "max_accuracy": 0.762195122,
         "mean_prompt_tokens": 31154.0,
-        "mean_completion_tokens": 26184.6
+        "mean_completion_tokens": 26184.6,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 31154.0,
+        "mean_gpt_35_completion_tokens": 26184.6,
+        "mean_gpt_4_prompt_tokens": 0.0,
+        "mean_gpt_4_completion_tokens": 0.0
     },
     {
         "model": "GPT-3.5",
@@ -15,7 +23,15 @@
         "min_accuracy": 0.7865853659,
         "max_accuracy": 0.8353658537,
         "mean_prompt_tokens": 15271340.1999999993,
-        "mean_completion_tokens": 1233365.8
+        "mean_completion_tokens": 1233365.8,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 15271340.1999999993,
+        "mean_gpt_35_completion_tokens": 1233365.8,
+        "mean_gpt_4_prompt_tokens": 0.0,
+        "mean_gpt_4_completion_tokens": 0.0
     },
     {
         "model": "GPT-3.5",
@@ -24,7 +40,15 @@
         "min_accuracy": 0.7865853659,
         "max_accuracy": 0.8292682927,
         "mean_prompt_tokens": 928818.8,
-        "mean_completion_tokens": 73067.0
+        "mean_completion_tokens": 73067.0,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 928818.8,
+        "mean_gpt_35_completion_tokens": 73067.0,
+        "mean_gpt_4_prompt_tokens": 0.0,
+        "mean_gpt_4_completion_tokens": 0.0
     },
     {
         "model": "GPT-3.5+reflexion",
@@ -33,7 +57,15 @@
         "min_accuracy": 0.8658536585,
         "max_accuracy": 0.9146341463,
         "mean_prompt_tokens": 467240.2,
-        "mean_completion_tokens": 41435.8
+        "mean_completion_tokens": 41435.8,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 467240.2,
+        "mean_gpt_35_completion_tokens": 41435.8,
+        "mean_gpt_4_prompt_tokens": 0.0,
+        "mean_gpt_4_completion_tokens": 0.0
     },
     {
         "model": "GPT-4",
@@ -42,7 +74,15 @@
         "min_accuracy": 0.8780487805,
         "max_accuracy": 0.9085365854,
         "mean_prompt_tokens": 31154.0,
-        "mean_completion_tokens": 53952.4
+        "mean_completion_tokens": 53952.4,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 0.0,
+        "mean_gpt_35_completion_tokens": 0.0,
+        "mean_gpt_4_prompt_tokens": 31154.0,
+        "mean_gpt_4_completion_tokens": 53952.4
     },
     {
         "model": "GPT-4",
@@ -51,7 +91,15 @@
         "min_accuracy": 0.8231707317,
         "max_accuracy": 0.9146341463,
         "mean_prompt_tokens": 9593044.0,
-        "mean_completion_tokens": 1285730.6000000001
+        "mean_completion_tokens": 1285730.6000000001,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 0.0,
+        "mean_gpt_35_completion_tokens": 0.0,
+        "mean_gpt_4_prompt_tokens": 9593044.0,
+        "mean_gpt_4_completion_tokens": 1285730.6000000001
     },
     {
         "model": "GPT-4",
@@ -60,7 +108,15 @@
         "min_accuracy": 0.9207317073,
         "max_accuracy": 0.9451219512,
         "mean_prompt_tokens": 281233.6,
-        "mean_completion_tokens": 53764.8
+        "mean_completion_tokens": 53764.8,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 0.0,
+        "mean_gpt_35_completion_tokens": 0.0,
+        "mean_gpt_4_prompt_tokens": 281233.6,
+        "mean_gpt_4_completion_tokens": 53764.8
     },
     {
         "model": "GPT-4",
@@ -69,7 +125,15 @@
         "min_accuracy": 0.8597560976,
         "max_accuracy": 0.9085365854,
         "mean_prompt_tokens": 147477.0,
-        "mean_completion_tokens": 80763.8
+        "mean_completion_tokens": 80763.8,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 0.0,
+        "mean_gpt_35_completion_tokens": 0.0,
+        "mean_gpt_4_prompt_tokens": 147477.0,
+        "mean_gpt_4_completion_tokens": 80763.8
     },
     {
         "model": "GPT-4",
@@ -78,7 +142,15 @@
         "min_accuracy": 0.9146341463,
         "max_accuracy": 0.9268292683,
         "mean_prompt_tokens": 39822.4,
-        "mean_completion_tokens": 70298.8
+        "mean_completion_tokens": 70298.8,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 0.0,
+        "mean_gpt_35_completion_tokens": 0.0,
+        "mean_gpt_4_prompt_tokens": 39822.4,
+        "mean_gpt_4_completion_tokens": 70298.8
     },
     {
         "model": "GPT-4",
@@ -87,7 +159,15 @@
         "min_accuracy": 0.9207317073,
         "max_accuracy": 0.9390243902,
         "mean_prompt_tokens": 38759.0,
-        "mean_completion_tokens": 68695.0
+        "mean_completion_tokens": 68695.0,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 0.0,
+        "mean_gpt_35_completion_tokens": 0.0,
+        "mean_gpt_4_prompt_tokens": 38759.0,
+        "mean_gpt_4_completion_tokens": 68695.0
     },
     {
         "model": "GPT-4+reflexion",
@@ -96,7 +176,15 @@
         "min_accuracy": 0.9146341463,
         "max_accuracy": 0.9512195122,
         "mean_prompt_tokens": 212766.0,
-        "mean_completion_tokens": 41229.2
+        "mean_completion_tokens": 41229.2,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 0.0,
+        "mean_gpt_35_completion_tokens": 0.0,
+        "mean_gpt_4_prompt_tokens": 212766.0,
+        "mean_gpt_4_completion_tokens": 41229.2
     },
     {
         "model": "GPT-4, GPT-3.5",
@@ -105,6 +193,31 @@
         "min_accuracy": 0.8902439024,
         "max_accuracy": 0.9207317073,
         "mean_prompt_tokens": 416441.0,
-        "mean_completion_tokens": 33500.8
+        "mean_completion_tokens": 33500.8,
+        "mean_l3_8b_prompt_tokens": 0.0,
+        "mean_l3_8b_completion_tokens": 0.0,
+        "mean_l3_70b_prompt_tokens": 0.0,
+        "mean_l3_70b_completion_tokens": 0.0,
+        "mean_gpt_35_prompt_tokens": 416441.0,
+        "mean_gpt_35_completion_tokens": 33500.8,
+        "mean_gpt_4_prompt_tokens": 0.0,
+        "mean_gpt_4_completion_tokens": 0.0
+    },
+    {
+        "model": "gpt",
+        "strategy_renamed": "Escalation",
+        "mean_accuracy": 0.85,
+        "min_accuracy": 0.8414634146,
+        "max_accuracy": 0.8536585366,
+        "mean_prompt_tokens": 110309.0,
+        "mean_completion_tokens": 28172.0,
+        "mean_l3_8b_prompt_tokens": 79685.0,
+        "mean_l3_8b_completion_tokens": 9004.8,
+        "mean_l3_70b_prompt_tokens": 13703.4,
+        "mean_l3_70b_completion_tokens": 1771.2,
+        "mean_gpt_35_prompt_tokens": 13470.0,
+        "mean_gpt_35_completion_tokens": 11286.4,
+        "mean_gpt_4_prompt_tokens": 3450.6,
+        "mean_gpt_4_completion_tokens": 6109.6
     }
 ]

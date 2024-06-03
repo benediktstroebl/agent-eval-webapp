@@ -5,6 +5,10 @@ $(document).ready(function() {
             var gpt4CompletionPrice = parseFloat($('#gpt4-completion-price').val())/1000000;
             var gpt3PromptPrice = parseFloat($('#gpt3-prompt-price').val())/1000000;
             var gpt3CompletionPrice = parseFloat($('#gpt3-completion-price').val())/1000000;
+            var l3_8bPromptPrice = parseFloat($('#l3-8b-prompt-price').val())/1000000;
+            var l3_8bCompletionPrice = parseFloat($('#l3-8b-completion-price').val())/1000000;
+            var l3_70bPromptPrice = parseFloat($('#l3-70b-prompt-price').val())/1000000;
+            var l3_70bCompletionPrice = parseFloat($('#l3-70b-completion-price').val())/1000000;
 
             var x = [];
             var y = [];
@@ -64,6 +68,8 @@ $(document).ready(function() {
                     cost = reflexion_cost + item.mean_prompt_tokens * gpt3PromptPrice + item.mean_completion_tokens * gpt3CompletionPrice;
                 } else if (item.strategy_renamed === 'LDB (Reflexion, GPT-4)') {
                     cost = reflexion_cost + item.mean_prompt_tokens * gpt4PromptPrice + item.mean_completion_tokens * gpt4CompletionPrice;
+                } else if (item.strategy_renamed === 'Escalation') {
+                    cost = item.mean_l3_8b_prompt_tokens * l3_8bPromptPrice + item.mean_l3_8b_completion_tokens * l3_8bCompletionPrice + item.mean_l3_70b_prompt_tokens * l3_70bPromptPrice + item.mean_l3_70b_completion_tokens * l3_70bCompletionPrice + item.mean_gpt_4_prompt_tokens * gpt4PromptPrice + item.mean_gpt_4_completion_tokens * gpt4CompletionPrice + item.mean_gpt_35_prompt_tokens * gpt3PromptPrice + item.mean_gpt_35_completion_tokens * gpt3CompletionPrice;
                 } else if (item.model === 'GPT-4') {
                     cost = item.mean_prompt_tokens * gpt4PromptPrice + item.mean_completion_tokens * gpt4CompletionPrice;
                 } else if (item.model === 'GPT-3.5') {
@@ -114,9 +120,9 @@ $(document).ready(function() {
                 // title: 'Accuracy vs Cost',
                 uirevision: true,
                 xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'log', autorange: true},
-                yaxis: { title: 'TESTEST', rangemode: 'tozero', autorange: true},
+                yaxis: { title: 'Accuracy', rangemode: 'tozero', autorange: true},
                 showlegend: false,
-                height: 700, // Adjust height as needed
+                height: 600, // Adjust height as needed
                 margin: {
                     l: 50,
                     r: 50,

@@ -138,6 +138,10 @@ $(document).ready(function() {
         $('#gpt4-completion-price').on('input', updatePlot);
         $('#gpt3-prompt-price').on('input', updatePlot);
         $('#gpt3-completion-price').on('input', updatePlot);
+        $('#l3-8b-prompt-price').on('input', updatePlot);
+        $('#l3-8b-completion-price').on('input', updatePlot);
+        $('#l3-70b-prompt-price').on('input', updatePlot);
+        $('#l3-70b-completion-price').on('input', updatePlot);
 
         updatePlot();
     });

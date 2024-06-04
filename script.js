@@ -1,14 +1,14 @@
 $(document).ready(function() {
     $.getJSON("data.json", function(data) {
         function updatePlot() {
-            var gpt4PromptPrice = parseFloat($('#gpt4-prompt-price').val())/1000000;
-            var gpt4CompletionPrice = parseFloat($('#gpt4-completion-price').val())/1000000;
-            var gpt3PromptPrice = parseFloat($('#gpt3-prompt-price').val())/1000000;
-            var gpt3CompletionPrice = parseFloat($('#gpt3-completion-price').val())/1000000;
-            var l3_8bPromptPrice = parseFloat($('#l3-8b-prompt-price').val())/1000000;
-            var l3_8bCompletionPrice = parseFloat($('#l3-8b-completion-price').val())/1000000;
-            var l3_70bPromptPrice = parseFloat($('#l3-70b-prompt-price').val())/1000000;
-            var l3_70bCompletionPrice = parseFloat($('#l3-70b-completion-price').val())/1000000;
+            var gpt4PromptPrice = parseFloat($('#gpt4-prompt-price').val()) / 1000000;
+            var gpt4CompletionPrice = parseFloat($('#gpt4-completion-price').val()) / 1000000;
+            var gpt3PromptPrice = parseFloat($('#gpt3-prompt-price').val()) / 1000000;
+            var gpt3CompletionPrice = parseFloat($('#gpt3-completion-price').val()) / 1000000;
+            var l3_8bPromptPrice = parseFloat($('#l3-8b-prompt-price').val()) / 1000000;
+            var l3_8bCompletionPrice = parseFloat($('#l3-8b-completion-price').val()) / 1000000;
+            var l3_70bPromptPrice = parseFloat($('#l3-70b-prompt-price').val()) / 1000000;
+            var l3_70bCompletionPrice = parseFloat($('#l3-70b-completion-price').val()) / 1000000;
 
             var x = [];
             var y = [];
@@ -32,7 +32,6 @@ $(document).ready(function() {
                 "LATS (GPT-3.5)": '#d95f02', // orange
                 "LDB (Reflexion, GPT-3.5)": '#d95f02', // orange
                 "Warming (GPT-4)": '#7570b3', // green
-                "LATS (GPT-3.5)": '#d95f02', // orange
                 "Retry (GPT-4)": '#7570b3', // green
                 "Warming (GPT-4-1step)": '#1b9e77', // blue
                 "LDB (GPT-4, Reflexion)": '#d95f02', // orange
@@ -42,6 +41,7 @@ $(document).ready(function() {
                 "Repeat (GPT-3.5)": '#7570b3', // green
                 "Warming (GPT-4)": '#7570b3', // green
             };
+
             var gpt4_cost = 0;
             var gpt3_cost = 0;
             var reflexion_cost = 0;
@@ -74,7 +74,7 @@ $(document).ready(function() {
                     cost = item.mean_prompt_tokens * gpt4PromptPrice + item.mean_completion_tokens * gpt4CompletionPrice;
                 } else if (item.model === 'GPT-3.5') {
                     cost = item.mean_prompt_tokens * gpt3PromptPrice + item.mean_completion_tokens * gpt3CompletionPrice;
-                } 
+                }
                 x.push(cost);
                 y.push(item.mean_accuracy);
                 text.push(item.strategy_renamed);
@@ -102,6 +102,40 @@ $(document).ready(function() {
                 }
             });
 
+            function isLeftTurn(p, q, r) {
+                return (q.cost - p.cost) * (r.accuracy - p.accuracy) - (q.accuracy - p.accuracy) * (r.cost - p.cost) > 0;
+            }
+
+            // Convex Hull Calculation
+            var upper_hull = [];
+            var pareto_length = pareto_x.length;
+            for (var i = 0; i < pareto_length; i++) {
+                var point = { cost: pareto_x[i], accuracy: pareto_y[i] };
+                while (upper_hull.length >= 2 && !isLeftTurn(upper_hull[upper_hull.length - 2], upper_hull[upper_hull.length - 1], point)) {
+                    upper_hull.pop();
+                }
+                upper_hull.push(point);
+            }
+
+            var lower_hull = [];
+            for (var i = pareto_length - 1; i >= 0; i--) {
+                var point = { cost: pareto_x[i], accuracy: pareto_y[i] };
+                while (lower_hull.length >= 2 && !isLeftTurn(lower_hull[lower_hull.length - 2], lower_hull[lower_hull.length - 1], point)) {
+                    lower_hull.pop();
+                }
+                lower_hull.push(point);
+            }
+
+            // Remove the last point of upper hull to avoid repetition
+            upper_hull.pop();
+            upper_hull.pop();
+
+            // Combine Hulls
+            var convex_hull = upper_hull.concat(lower_hull);
+
+            var convex_pareto_x = convex_hull.map(point => point.cost);
+            var convex_pareto_y = convex_hull.map(point => point.accuracy);
+
             var trace = {
                 x: x,
                 y: y,
@@ -121,8 +155,8 @@ $(document).ready(function() {
             };
 
             var pareto_trace = {
-                x: pareto_x,
-                y: pareto_y,
+                x: convex_pareto_x,
+                y: convex_pareto_y,
                 mode: 'lines',
                 name: 'Pareto Frontier',
                 line: {

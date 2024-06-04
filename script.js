@@ -82,6 +82,25 @@ $(document).ready(function() {
                 colors.push(color_dict[item.strategy_renamed] || 'black');
             });
 
+            // Pareto Curve Calculation
+            var pareto_x = [];
+            var pareto_y = [];
+            var pareto_points = [];
+
+            data.forEach((item, index) => {
+                pareto_points.push({ cost: x[index], accuracy: y[index] });
+            });
+
+            pareto_points.sort((a, b) => a.cost - b.cost);
+
+            var max_acc = 0;
+            pareto_points.forEach(point => {
+                if (point.accuracy >= max_acc) {
+                    pareto_x.push(point.cost);
+                    pareto_y.push(point.accuracy);
+                    max_acc = point.accuracy;
+                }
+            });
 
             var trace = {
                 x: x,
@@ -101,11 +120,22 @@ $(document).ready(function() {
                 hovertemplate: '<b>%{text}</b><br><br>Cost: $%{x:.2f}<br>Acc: %{y:.2%}<extra></extra>'
             };
 
+            var pareto_trace = {
+                x: pareto_x,
+                y: pareto_y,
+                mode: 'lines',
+                name: 'Pareto Frontier',
+                line: {
+                    color: 'red',
+                    width: 2,
+                    dash: 'dot'
+                }
+            };
+
             var layout = {
-                // title: 'Accuracy vs Cost',
                 uirevision: true,
-                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'log', autorange: true},
-                yaxis: { title: 'Accuracy', range: [0.7, 1], autorange: true},
+                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'log', autorange: true },
+                yaxis: { title: 'Accuracy', range: [0.7, 1], autorange: true },
                 showlegend: false,
                 height: 600, // Adjust height as needed
                 margin: {
@@ -116,7 +146,7 @@ $(document).ready(function() {
                 }
             };
 
-            Plotly.react('plot', [trace], layout);
+            Plotly.react('plot', [trace, pareto_trace], layout);
         }
 
         $('#gpt4-prompt-price').on('input', updatePlot);

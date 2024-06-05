@@ -132,6 +132,11 @@ $(document).ready(function() {
                 marker: {
                     color: colors,
                     size: 10,
+                    symbol: colors.map(color => {
+                        if (color === '#1b9e77') return 'square'; // blue
+                        if (color === '#7570b3') return 'x'; // purple
+                        return 'circle'; // orange
+                    }),
                     line: {
                         width: 2
                     }

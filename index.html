@@ -7,6 +7,34 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+    .legend-item {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center the legend items */
+        margin-bottom: 5px;
+    }
+    .legend-symbol {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+        text-align: center;
+        line-height: 16px;
+    }
+    .circle-symbol {
+        background-color: #d95f02;
+        border-radius: 50%;
+    }
+    .square-symbol {
+        background-color: #1b9e77;
+    }
+    .x-symbol {
+        color: #7570b3;
+        font-size: 16px;
+        font-weight: bold; /* Make the X symbol bold */
+    }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -41,9 +69,18 @@
         <div id="plot"></div>
         <div id="legend">
             <h2>Legend</h2>
-            <p><span class="legend-color" style="background-color:#d95f02;"></span> Complex agent</p>
-            <p><span class="legend-color" style="background-color:#1b9e77;"></span> Baseline agent</p>
-            <p><span class="legend-color" style="background-color:#7570b3;"></span> Zero-shot model</p>
+            <div class="legend-item">
+                <div class="legend-symbol circle-symbol"></div>
+                <span>Complex agent</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-symbol square-symbol"></div>
+                <span>Baseline agent</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-symbol x-symbol">&#10005;</div>
+                <span>Zero-shot model</span>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

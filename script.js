@@ -107,31 +107,18 @@ $(document).ready(function() {
             }
 
             // Convex Hull Calculation
-            var upper_hull = [];
+            var convex_hull = [];
             var pareto_length = pareto_x.length;
-            for (var i = 0; i < pareto_length; i++) {
-                var point = { cost: pareto_x[i], accuracy: pareto_y[i] };
-                while (upper_hull.length >= 2 && !isLeftTurn(upper_hull[upper_hull.length - 2], upper_hull[upper_hull.length - 1], point)) {
-                    upper_hull.pop();
-                }
-                upper_hull.push(point);
-            }
-
-            var lower_hull = [];
             for (var i = pareto_length - 1; i >= 0; i--) {
                 var point = { cost: pareto_x[i], accuracy: pareto_y[i] };
-                while (lower_hull.length >= 2 && !isLeftTurn(lower_hull[lower_hull.length - 2], lower_hull[lower_hull.length - 1], point)) {
-                    lower_hull.pop();
+                while (convex_hull.length >= 2 && !isLeftTurn(convex_hull[convex_hull.length - 2], convex_hull[convex_hull.length - 1], point)) {
+                    convex_hull.pop();
                 }
-                lower_hull.push(point);
+                convex_hull.push(point);
             }
 
-            // Remove the last point of upper hull to avoid repetition
-            upper_hull.pop();
-            upper_hull.pop();
-
-            // Combine Hulls
-            var convex_hull = upper_hull.concat(lower_hull);
+            // Remove the first point from convex hull as it isn't within the confidence interval
+            convex_hull.shift();
 
             var convex_pareto_x = convex_hull.map(point => point.cost);
             var convex_pareto_y = convex_hull.map(point => point.accuracy);

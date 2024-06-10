@@ -35,26 +35,35 @@
         font-weight: bold; /* Make the X symbol bold */
     }
     .repro-link {
-        text-align: center;
-        margin: 20px 0;
-    }
-    .repro-link a {
-        font-size: 18px;
-        color: #1b9e77;
-        text-decoration: none;
-        font-weight: bold;
-    }
-    .repro-link a:hover {
-        text-decoration: underline;
-    }
+            text-align: left;
+            margin: 20px 0;
+        }
+        .repro-link a {
+            font-size: 18px;
+            color: black;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .repro-link a:hover {
+            text-decoration: underline;
+        }
+        .repro-link img {
+            margin-right: 8px;
+            width: 24px; /* Adjust size as needed */
+            height: 24px; /* Adjust size as needed */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="repro-link">
-            <a href="https://github.com/benediktstroebl/agent-evals" target="_blank">Reproducibility Materials</a>
-        </div>
         <h1>Accuracy-Cost Tradeoff on HumanEval</h1>
+        <div class="repro-link">
+            <a href="https://github.com/benediktstroebl/agent-evals" target="_blank">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo">
+                Full reproducibility materials
+            </a>
+        </div>
         <div class="controls">
             <div class="input-group-header">
                 <div class="input-label"></div>

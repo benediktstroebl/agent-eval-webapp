@@ -118,7 +118,7 @@ $(document).ready(function() {
             }
 
             // Remove the first point from convex hull as it isn't within the confidence interval
-            convex_hull.shift();
+            // convex_hull.shift();
 
             var convex_pareto_x = convex_hull.map(point => point.cost);
             var convex_pareto_y = convex_hull.map(point => point.accuracy);

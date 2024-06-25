@@ -83,15 +83,13 @@ $(document).ready(function() {
             });
 
             // Pareto Curve Calculation
-            var pareto_x = [];
-            var pareto_y = [];
-            var pareto_points = [];
+            var points = data.map(item => ({
+                cost: x[index],
+                accuracy: y[index],
+                text: item.strategy_renamed
+            }));
 
-            data.forEach((item, index) => {
-                pareto_points.push({ cost: x[index], accuracy: y[index] });
-            });
-
-            pareto_points.sort((a, b) => a.cost - b.cost);
+            points.sort((a, b) => a.cost - b.cost);
 
             // Filter points for Pareto efficiency
             function isParetoEfficient(current, others) {

@@ -83,9 +83,9 @@ $(document).ready(function() {
             });
 
             // Pareto Curve Calculation
-            var points = data.map((item, index) => ({
-                cost: x[index], // Ensure x[index] corresponds to the correct cost calculation from your earlier logic
-                accuracy: y[index], // Ensure y[index] corresponds to the correct accuracy calculation
+            var points = data.map(item => ({
+                cost: x[index],
+                accuracy: y[index],
                 text: item.strategy_renamed
             }));
 

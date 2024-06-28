@@ -83,39 +83,29 @@ $(document).ready(function() {
             });
 
             // Pareto Curve Calculation
-            var pareto_x = [];
-            var pareto_y = [];
             var pareto_points = [];
+            for (var i = 0; i < x.length; i++) {
+                pareto_points.push({ cost: x[i], accuracy: y[i], label: labels[i] });
+            }
 
-            data.forEach((item, index) => {
-                pareto_points.push({ cost: x[index], accuracy: y[index] });
-            });
-
+            // Sort points by cost
             pareto_points.sort((a, b) => a.cost - b.cost);
 
-            var max_acc = 0;
-            pareto_points.forEach(point => {
-                if (point.accuracy >= max_acc) {
-                    pareto_x.push(point.cost);
-                    pareto_y.push(point.accuracy);
-                    max_acc = point.accuracy;
-                }
-            });
-
+            // Compute upper convex hull using the same logic as in the Python example
             function isLeftTurn(p, q, r) {
                 return (q.cost - p.cost) * (r.accuracy - p.accuracy) - (q.accuracy - p.accuracy) * (r.cost - p.cost) > 0;
             }
 
-            // Convex Hull Calculation
-            var convex_hull = [];
-            var pareto_length = pareto_x.length;
-            for (var i = pareto_length - 1; i >= 0; i--) {
-                var point = { cost: pareto_x[i], accuracy: pareto_y[i] };
-                while (convex_hull.length >= 2 && !isLeftTurn(convex_hull[convex_hull.length - 2], convex_hull[convex_hull.length - 1], point)) {
-                    convex_hull.pop();
+            var upper_convex_hull = [];
+            for (var point of pareto_points) {
+                while (upper_convex_hull.length >= 2 && !isLeftTurn(upper_convex_hull[upper_convex_hull.length - 2], upper_convex_hull[upper_convex_hull.length - 1], point)) {
+                    upper_convex_hull.pop();
                 }
-                convex_hull.push(point);
+                upper_convex_hull.push(point);
             }
+
+            var pareto_x = upper_convex_hull.map(p => p.cost);
+            var pareto_y = upper_convex_hull.map(p => p.accuracy);
 
             // Remove the first point from convex hull as it isn't within the confidence interval
             // convex_hull.shift();
@@ -147,8 +137,8 @@ $(document).ready(function() {
             };
 
             var pareto_trace = {
-                x: convex_pareto_x,
-                y: convex_pareto_y,
+                x: pareto_x,
+                y: pareto_y,
                 mode: 'lines',
                 name: 'Pareto Frontier',
                 line: {

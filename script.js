@@ -88,24 +88,41 @@ $(document).ready(function() {
                 pareto_points.push({ cost: x[i], accuracy: y[i], label: labels[i] });
             }
 
-            // Sort points by cost
-            pareto_points.sort((a, b) => a.cost - b.cost);
+            // Sort points by cost and accuracy
+            pareto_points.sort((a, b) => a.cost - b.cost || b.accuracy - a.accuracy);
+
+            // reverse the array to get the upper convex hull
+            pareto_points.reverse();
+
 
             // Compute upper convex hull using the same logic as in the Python example
             function isLeftTurn(p, q, r) {
-                return (q.cost - p.cost) * (r.accuracy - p.accuracy) - (q.accuracy - p.accuracy) * (r.cost - p.cost) > 0;
+                return (q.cost - p.cost) * (r.accuracy - p.accuracy) - (q.accuracy - p.accuracy) * (r.cost - p.cost);
             }
 
             var upper_convex_hull = [];
             for (var point of pareto_points) {
-                while (upper_convex_hull.length >= 2 && !isLeftTurn(upper_convex_hull[upper_convex_hull.length - 2], upper_convex_hull[upper_convex_hull.length - 1], point)) {
+                while (upper_convex_hull.length >= 2 && isLeftTurn(upper_convex_hull[upper_convex_hull.length - 2], upper_convex_hull[upper_convex_hull.length - 1], point) <= 0) {
                     upper_convex_hull.pop();
                 }
                 upper_convex_hull.push(point);
             }
 
-            var pareto_x = upper_convex_hull.map(p => p.cost);
-            var pareto_y = upper_convex_hull.map(p => p.accuracy);
+            // retain only pareto efficient points
+            function isParetoEfficient(others, candidate) {
+                for (var i = 0; i < others.length; i++) {
+                    var other = others[i];
+                    if ((other.cost <= candidate.cost && other.accuracy >= candidate.accuracy) && 
+                        (other.cost < candidate.cost || other.accuracy > candidate.accuracy)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            var pareto_frontier = upper_convex_hull.filter(point => isParetoEfficient(upper_convex_hull, point));
+
+            var pareto_x = pareto_frontier.map(p => p.cost);
+            var pareto_y = pareto_frontier.map(p => p.accuracy);
 
             // Remove the first point from convex hull as it isn't within the confidence interval
             // convex_hull.shift();

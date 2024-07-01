@@ -9,6 +9,7 @@ $(document).ready(function() {
             var l3_8bCompletionPrice = parseFloat($('#l3-8b-completion-price').val()) / 1000000;
             var l3_70bPromptPrice = parseFloat($('#l3-70b-prompt-price').val()) / 1000000;
             var l3_70bCompletionPrice = parseFloat($('#l3-70b-completion-price').val()) / 1000000;
+            var log_scale = $('#log-scale').is(':checked');
 
             var x = [];
             var y = [];
@@ -75,6 +76,12 @@ $(document).ready(function() {
                 } else if (item.model === 'GPT-3.5') {
                     cost = item.mean_prompt_tokens * gpt3PromptPrice + item.mean_completion_tokens * gpt3CompletionPrice;
                 }
+
+                // Skip LATS (GPT-4) point when log scale is disabled
+                if (!log_scale && item.strategy_renamed === 'LATS (GPT-4)') {
+                    return;
+                }
+
                 x.push(cost);
                 y.push(item.mean_accuracy);
                 text.push(item.strategy_renamed);
@@ -164,10 +171,12 @@ $(document).ready(function() {
                     dash: 'dot'
                 }
             };
-
+            
+            var plot_type = log_scale ? 'log' : 'linear';
+            var plot_caption = log_scale ? '' : 'LATS (GPT-4) point is excluded since it is Pareto dominated and disrupts scale of the plot.'
             var layout = {
                 uirevision: true,
-                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'log', autorange: true },
+                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: plot_type, autorange: true },
                 yaxis: { title: 'Accuracy', range: [0.7, 1], autorange: true },
                 showlegend: false,
                 height: 600, // Adjust height as needed
@@ -179,7 +188,13 @@ $(document).ready(function() {
                 }
             };
 
-            Plotly.react('plot', [trace, pareto_trace], layout);
+            document.getElementById("caption").innerHTML = "<center><p>" + plot_caption + "</p></center>";
+            
+            if (log_scale) {
+                Plotly.react('plot', [trace], layout);
+            } else {
+                Plotly.react('plot', [trace, pareto_trace], layout);
+            }
         }
 
         $('#gpt4-prompt-price').on('input', updatePlot);
@@ -190,6 +205,7 @@ $(document).ready(function() {
         $('#l3-8b-completion-price').on('input', updatePlot);
         $('#l3-70b-prompt-price').on('input', updatePlot);
         $('#l3-70b-completion-price').on('input', updatePlot);
+        $('#log-scale').on('change', updatePlot);
 
         updatePlot();
     });

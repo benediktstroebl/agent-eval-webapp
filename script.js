@@ -172,22 +172,40 @@ $(document).ready(function() {
                 }
             };
             
-            var plot_type = log_scale ? 'log' : 'linear';
-            var plot_caption = log_scale ? '' : 'LATS (GPT-4) point is excluded since it is Pareto dominated and disrupts scale of the plot.'
-            var layout = {
-                uirevision: true,
-                xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: plot_type, autorange: true },
-                yaxis: { title: 'Accuracy', range: [0.7, 1], autorange: true },
-                showlegend: false,
-                height: 600, // Adjust height as needed
-                margin: {
-                    l: 50,
-                    r: 50,
-                    t: 50,
-                    b: 50
-                }
-            };
+            var layout;
+            if (log_scale) {
+                layout = {
+                    uirevision: true,
+                    xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'log', autorange: true},
+                    yaxis: { title: 'Accuracy', autorange: true},
+                    showlegend: false,
+                    height: 600, // Adjust height as needed
+                    margin: {
+                        l: 50,
+                        r: 50,
+                        t: 50,
+                        b: 50
+                    }
+                };
+            } else {
+                var min_x = Math.min(...x) * 0.9 - 0.5;
+                var max_x = Math.max(...x) * 1.1 + 0.5;
+                layout = {
+                    uirevision: true,
+                    xaxis: { title: 'Cost (USD, measured in April 2024)', rangemode: 'tozero', type: 'linear', range: [min_x, max_x]},
+                    yaxis: { title: 'Accuracy', autorange: true},
+                    showlegend: false,
+                    height: 600, // Adjust height as needed
+                    margin: {
+                        l: 50,
+                        r: 50,
+                        t: 50,
+                        b: 50
+                    }
+                };
+            }
 
+            var plot_caption = log_scale ? '' : 'LATS (GPT-4) point is excluded since it is Pareto dominated and disrupts scale of the plot.';
             document.getElementById("caption").innerHTML = "<center><p>" + plot_caption + "</p></center>";
             
             if (log_scale) {

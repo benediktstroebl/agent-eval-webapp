@@ -53,6 +53,12 @@
             width: 24px; /* Adjust size as needed */
             height: 24px; /* Adjust size as needed */
         }
+        #plot {
+            margin-bottom: 20px; /* Adjust the value as needed */
+        }
+        .input-group {
+            margin-bottom: 20px; /* Adjust the value as needed */
+        }
     </style>
 </head>
 <body>
@@ -90,12 +96,13 @@
                 <input type="number" id="l3-70b-prompt-price" value="0.9" step="0.5" min="0">
                 <input type="number" id="l3-70b-completion-price" value="0.9" step="0.5" min="0">
             </div>
-            <div class="input-group">
-                <div class="input-label">Log Scale</div>
-                <input type="checkbox" id="log-scale" checked>
-            </div>
+
         </div>
         <div id="plot"></div>
+        <div class="input-group" style="margin-bottom: 20px;">
+            <div class="input-label" style="margin-right: 5px;">Log Scale</div>
+            <input type="checkbox" id="log-scale" unchecked>
+        </div>
         <div id="caption"></div>
         <div id="legend">
             <h2>Legend</h2>
